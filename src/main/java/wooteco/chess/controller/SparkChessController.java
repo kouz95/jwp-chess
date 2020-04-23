@@ -45,7 +45,7 @@ public class SparkChessController implements ChessController {
 
 	@Override
 	public void updateBoard() {
-		put("/api/move", this::updateBoard);
+		put("/api/piece", this::updateBoard);
 	}
 
 	@Override
@@ -71,6 +71,7 @@ public class SparkChessController implements ChessController {
 
 		String from = element.getAsJsonObject().get("from").getAsString();
 		String to = element.getAsJsonObject().get("to").getAsString();
+
 		String gameId = request.session().attribute("game_id");
 
 		service.move(gameId, Position.of(from), Position.of(to));
